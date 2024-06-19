@@ -43,18 +43,12 @@ export default {
         clearTimeout(timeOut);
         this.state = 'now';
         this.message = '성급하시네요. 초록색이 된 후에 클릭하세요.';
-        startTime = 0;
-        console.log(this.state);
       } else if (this.state === 'now') {
         endTime = new Date();
-        if (startTime === 0) {
-          endTime = 0;
-        } else {
-          this.result.push(endTime - startTime);
-          console.log(this.result);
-        }
         this.state = 'waiting';
         this.message = '클릭해서 시작하세요.';
+        this.result.push(endTime - startTime);
+        console.log(this.result);
       }
     }
   }
