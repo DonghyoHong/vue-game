@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import LottoBall from "./components/lottogame/LottoBall.vue";
+import LottoBall from "Components/lottogame/LottoBall.vue";
 
 function getWinNumbers() {
   const candidate = Array(45).fill().map((v, i) => i + 1);

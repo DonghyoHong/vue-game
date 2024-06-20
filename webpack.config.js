@@ -7,7 +7,7 @@ module.exports = {
     resolve: {
         extensions: [".js", ".vue"],
         alias: {
-            Components: path.resolve(__dirname, './src/components/'),
+            Components: path.resolve(__dirname, 'src/components/'),
         }
     },
     entry: "./src/main.js"
