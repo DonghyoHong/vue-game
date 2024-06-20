@@ -3,8 +3,6 @@
 </template>
 
 <script>
-import EventBus from "Components/tictactoe/EventBus";
-
 export default {
 // setup(){
   props: {
@@ -22,7 +20,7 @@ export default {
       if (this.cellIndex) {
         return;
       }
-      EventBus.$emit('clickTd', this.rowIndex, this.celIndex);
+      this.emitter.emit('clickTd', {rowIndex: this.rowIndex, celIndex: this.celIndex});
     }
   }
 }
