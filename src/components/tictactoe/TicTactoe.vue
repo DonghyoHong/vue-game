@@ -28,6 +28,62 @@ export default {
     onChangeData() {
       this.$set(this.tableData[1], 0, 'X'); //Vue.set과 동일함
     }
+    , commonData() {
+      this.turn = 'O';
+      this.tableData = [
+        ['', '', ''],
+        ['', '', ''],
+        ['', '', '']];
+    }
+    , onClickTd(rowIndex, celIndex) {
+      const data = this.tableData;
+      data.tableData[rowIndex][celIndex] = this.turn;
+      let win = false;
+      if (data.tableData[rowIndex][0] === this.turn
+          && data.tableData[rowIndex][1] === this.turn
+          && data.tableData[rowIndex][2] === this.turn) {
+        win = true;
+      }
+      if (data.tableData[0][celIndex] === this.turn
+          && data.tableData[1][celIndex] === this.turn
+          && data.tableData[2][celIndex] === this.turn) {
+        win = true;
+      }
+      if (data.tableData[0][0] === this.turn
+          && data.tableData[1][1] === this.turn
+          && data.tableData[2][2] === this.turn) {
+        win = true;
+      }
+      if (data.tableData[0][2] === this.turn
+          && data.tableData[1][1] === this.turn
+          && data.tableData[2][0] === this.turn) {
+        win = true;
+      }
+
+      if (win) {
+        this.winner = this.turn;
+        this.commonData();
+      } else { //무승부
+        let all = true;
+        data.tableData.forEach((row) => {
+          row.forEach((cell, index) => {
+            if (!cell) {
+              all = false;
+            }
+          })
+        });
+
+        if (all) {
+          this.winner = '';
+          this.commonData();
+        } else {
+          this.turn = this.turn === 'O' ? 'X' : 'O';
+        }
+      }
+    }
+  }
+  , created() {
+    EventBus.$on('clicked', this.onClickTd);
   }
 }
 </script>
