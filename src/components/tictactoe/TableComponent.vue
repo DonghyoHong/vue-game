@@ -1,7 +1,7 @@
 <template>
   <table>
     <tbody>
-    <TrComponent v-for="(rowData, index) in tableData" :key="index"
+    <TrComponent v-for="(rowData, index) in tableData" :key="index" :rowData="rowData"
                  :rowIndex="index"></TrComponent>
     </tbody>
   </table>
@@ -9,29 +9,17 @@
 
 <script>
 import TrComponent from "Components/tictactoe/TrComponent.vue";
-import {useStore} from "vuex";
 
 export default {
-  setup() {
-    const store = useStore();
-    const tableData = () => store.state.tableData;
-    const turnMessage = () => store.getters.turnMessage;
-
-    return {tableData, turnMessage}
+// setup(){
+  props: {
+    tableData: Array,
   }
-  , props: {}
   , components: {TrComponent}
   , data() {
     return {}
   }
-  , computed: {
-    tableData() {
-      return this.tableData();
-    }
-    , turnMessage() {
-      return this.turnMessage();
-    }
-  }
+  , computed: {}
   , methods: {}
 }
 </script>
