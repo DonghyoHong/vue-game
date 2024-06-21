@@ -1,7 +1,6 @@
 <template>
   <tr>
     <TdComponent v-for="(celData, index) in rowData"
-                 :celData="celData"
                  :celIndex="index"
                  :rowIndex="rowIndex"
                  :key="index">
@@ -10,13 +9,17 @@
 </template>
 
 <script>
-import TdComponent from "Components/tictactoe/TdComponent.vue";
+import TdComponent from "Components/tictactoeVuex/TdComponent.vue";
+import {useStore} from "vuex";
 
 export default {
-// setup(){
-  props: {
-    rowData: Array
-    , rowIndex: Number
+  setup() {
+    const store = useStore();
+    const tableData = (rowIndex) => store.state.tableData[rowIndex];
+    return {tableData}
+  }
+  , props: {
+    rowIndex: Number
   },
   components: {
     TdComponent
@@ -26,7 +29,11 @@ export default {
       parent: "Td 부모"
     }
   }
-  , computed: {}
+  , computed: {
+    rowData() {
+      return this.tableData(this.rowIndex);
+    }
+  }
   , methods: {}
 }
 </script>

@@ -27,6 +27,8 @@ export default new Vuex.Store({
             state.winner = winner;
         }
         , [CLICK_CELL](state, {row, cell}) {
+            console.log(state.turn);
+            console.log(row, cell);
             state.tableData[row][cell] = state.turn;
         }
         , [CHANGE_TURN](state) {

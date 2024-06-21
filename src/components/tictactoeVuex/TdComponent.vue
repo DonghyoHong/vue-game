@@ -6,12 +6,10 @@
 import {CHANGE_TURN, CLICK_CELL, NO_WINNER, RESET_GAME, SET_WINNER} from "Components/tictactoeVuex/store";
 import {mapState, useStore} from "vuex";
 
-const store = useStore();
-
 export default {
   setup() {
-
-    const clickCell = (rowIndex, celIndex) => store.commit(CLICK_CELL, {row: rowIndex, cel: celIndex});
+    const store = useStore();
+    const clickCell = (rowIndex, celIndex) => store.commit(CLICK_CELL, {row: rowIndex, cell: celIndex});
     const setWinner = (turn) => store.commit(SET_WINNER, turn);
     const resetGame = () => store.commit(RESET_GAME);
     const noWinner = () => store.commit(NO_WINNER);
@@ -44,7 +42,6 @@ export default {
   }
   , methods: {
     onClickTd() {
-      console.log("1111111")
       if (this.cellIndex) {
         return;
       }

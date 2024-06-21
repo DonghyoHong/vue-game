@@ -1,32 +1,34 @@
 <template>
   <div>
     <div>{{ turn }} 님의 순서 입니다.</div>
-    <TableComponent></TableComponent>
+    <TableComponent :tableData="tableData"></TableComponent>
     <div v-if="winner">{{ winner }} 님의 승리!</div>
   </div>
 </template>
 
 <script>
-import {mapState} from "vuex";
 import TableComponent from "Components/tictactoeVuex/TableComponent.vue"
-import store from "Components/tictactoeVuex/store";
+import {mapState} from "vuex";
 
 export default {
-// setup(){
-  store
-  , components: {TableComponent}
+  /*setup() {
+    const store = useStore();
+    const tableData = () => store.state.tableData;
+    const turn = () => store.state.turn;
+    const winner = () => store.state.winner;
+
+    return {tableData, turn, winner}
+  }*/
+  components: {TableComponent}
   , data() {
     return {}
   }
   , computed: {
-    ...mapState(["winner", "turn"])
-    /*
-    winner() {
-      return this.$store.state.winner;
-    }
-    , turn() {
-      return this.$store.state.turn;
-    }*/
+    ...mapState({
+      tableData: state => state.tableData
+      , turn: state => state.turn
+      , winner: state => state.winner
+    })
   }
   , methods: {
     onChangeData() {
