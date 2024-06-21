@@ -4,7 +4,9 @@
     <!--    <TableComponent :tableData="tableData"></TableComponent>-->
     <table>
       <tr v-for="(rowData, rowIndex) in tableData" :key="rowIndex">
-        <td @click="onClickTd(rowIndex, cellIndex)" v-for="(cellData, cellIndex) in rowData">{{ cellData }}</td>
+        <td @click="onClickTd(rowIndex, cellIndex)" v-for="(cellData, cellIndex) in rowData" :key="cellIndex">
+          {{ cellData }}
+        </td>
       </tr>
     </table>
     <div v-if="winner">{{ winner }} 님의 승리!</div>
