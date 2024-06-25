@@ -1,55 +1,29 @@
 <template>
   <div>
-    <div>{{ turn }} 님의 순서 입니다.</div>
-    <TableComponent :tableData="tableData"></TableComponent>
-    <div v-if="winner">{{ winner }} 님의 승리!</div>
+    <div>
+      <router-link to="/game">Game Matcher</router-link>
+      <router-link to="/game/minesweeper">minesweeper</router-link>
+      <router-link to="/game/tictactoeVuexSlot">tictactoeVuexSlot</router-link>
+      <router-link to="/game/lottoGame">Lotto</router-link>
+    </div>
+    <RouterView></RouterView>
+
   </div>
 </template>
 
 <script>
-import TableComponent from "Components/tictactoe/TableComponent.vue"
-import {mapState} from "vuex";
+// '#' 해시라우터를 쓰면 새로고침을 해도 정상으로 동작하게 됨 (검색엔진에서는 ㄴㄴ 그래서 historyRouter를 사용)
 
 export default {
-  /*setup() {
-    const store = useStore();
-    const tableData = () => store.state.tableData;
-    const turn = () => store.state.turn;
-    const winner = () => store.state.winner;
+// setup(){
+  data() {
 
-    return {tableData, turn, winner}
-  }*/
-  components: {TableComponent}
-  , data() {
     return {}
-  }
-  , computed: {
-    ...mapState({
-      tableData: state => state.tableData
-      , turn: state => state.turn
-      , winner: state => state.winner
-    })
-  }
-  , methods: {
-    onChangeData() {
-      this.$set(this.tableData[1], 0, 'X'); //Vue.set과 동일함
-    }
   }
 }
 </script>
 
 <!--<style lang="scss" scoped>-->
-<style>
-table {
-  border-collapse: collapse;
-  border: 1px solid white;
-}
+<style scoped>
 
-td {
-  border: 1px solid white;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  text-color: white;
-}
 </style>
